@@ -23,11 +23,13 @@ const QuestionCars: React.FC<Props> = ({
       <p>{question}</p>
       <div>
         {answers.map((answer) => {
-          <div>
-            <button disabled={userAnswer} onClick={callback}>
-              <span>{answer}</span>
-            </button>
-          </div>;
+          return (
+            <div>
+              <button disabled={userAnswer} onClick={callback}>
+                <span>{answer}</span>
+              </button>
+            </div>
+          );
         })}
       </div>
     </div>
