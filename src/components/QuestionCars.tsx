@@ -1,8 +1,10 @@
+import { AnswerObject } from "../App";
+
 type Props = {
   question: string;
   answers: string[];
-  callback: any;
-  userAnswer: any;
+  callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  userAnswer: AnswerObject | undefined;
   questionNum: number;
   totalQuestions: number;
 };
@@ -22,10 +24,10 @@ const QuestionCars: React.FC<Props> = ({
       </p>
       <p>{question}</p>
       <div>
-        {answers.map((answer) => {
+        {answers.map((answer, i) => {
           return (
-            <div>
-              <button disabled={userAnswer} onClick={callback}>
+            <div key={i}>
+              <button disabled={userAnswer ? true : false} onClick={callback}>
                 <span>{answer}</span>
               </button>
             </div>
