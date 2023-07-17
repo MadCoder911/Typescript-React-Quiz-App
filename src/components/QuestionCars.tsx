@@ -20,7 +20,7 @@ const QuestionCars: React.FC<Props> = ({
   return (
     <div>
       <p className="number">
-        Question: {questionNum} / {totalQuestions}
+        Question : {questionNum} / {totalQuestions}
       </p>
       <p>{question}</p>
       <div>
