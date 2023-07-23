@@ -1,11 +1,11 @@
 import { AnswerObject } from "../App";
-
+import { Wrapper, ButtonWrapper } from "./QuestionCars.styles";
 type Props = {
   question: string;
   answers: string[];
   callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
   userAnswer: AnswerObject | undefined;
-  questionNum: number;
+  questionNr: number;
   totalQuestions: number;
 };
 
@@ -14,27 +14,37 @@ const QuestionCars: React.FC<Props> = ({
   answers,
   callback,
   userAnswer,
-  questionNum,
+  questionNr,
   totalQuestions,
 }) => {
   return (
-    <div>
+    <Wrapper>
       <p className="number">
-        Question : {questionNum} / {totalQuestions}
+        Question : {questionNr} / {totalQuestions}
       </p>
       <p>{question}</p>
       <div>
         {answers.map((answer, i) => {
           return (
             <div key={i}>
-              <button disabled={userAnswer ? true : false} onClick={callback}>
-                <span>{answer}</span>
-              </button>
+              <ButtonWrapper
+                key={answer}
+                correct={userAnswer?.correctAnswer === answer}
+                userClicked={userAnswer?.answer === answer}
+              >
+                <button
+                  disabled={userAnswer ? true : false}
+                  value={answer}
+                  onClick={callback}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: answer }} />
+                </button>
+              </ButtonWrapper>
             </div>
           );
         })}
       </div>
-    </div>
+    </Wrapper>
   );
 };
 export default QuestionCars;
